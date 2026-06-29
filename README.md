@@ -58,6 +58,44 @@ php -S localhost:8000
   - Respostas rápidas (bônus de velocidade)
   - Lista detalhada de perguntas e respostas
 
+## 🧠 Aspectos Psicológicos e Pedagógicos
+
+O jogo foi desenhado com princípios pedagógicos e psicológicos para promover aprendizagem significativa em crianças de ~8 anos:
+
+### Explicação Pós-Resposta
+- **Por que funciona:** Explicar o "porquê" da resposta fortalece a retenção e a compreensão. A criança não apenas memoriza a resposta correta, mas entende o raciocínio por trás dela.
+- **Implementação:** Cada pergunta possui uma explicação pedagógica que aparece imediatamente após a resposta, tanto no acerto quanto no erro.
+
+### Feedback de Erro Construtivo
+- **Evita linguagem negativa:** Não usa termos como "Resposta errada" ou "é errando que se aprende". Em vez disso, foca na instrução do correto.
+- **Revisão contextualizada:** A mensagem de erro inclui o enunciado da pergunta (ex: "Vamos revisar: 'O antônimo de alto é?'") para que a criança reconecte a resposta correta ao contexto.
+- **Cor neutra:** O feedback visual usa azul (`#3f37c9`) em vez de vermelho, reduzindo a carga emocional negativa associada ao erro.
+
+### Punição Reduzida
+- **Recuo de 1 casa:** Ao errar, o jogador recua apenas 1 casa, independentemente da dificuldade. Isso reduz a frustração e mantém o foco no aprendizado em vez da penalidade.
+- **Punição não escalonada:** A punição não aumenta com a dificuldade, evitando que perguntas mais difíceis sejam percebidas como ameaças.
+
+### Exposição ao Erro Saudável
+- **Idade apropriada:** Crianças de 8 anos estão em fase ideal para lidar com erros desde que sejam informativos e não avaliativos.
+- **Erro como revisão:** O erro é apresentado como oportunidade de revisão, não como fracasso pessoal.
+- **Ausência de comparação imediata:** Não há ranking comparativo durante o jogo, apenas relatório individual ao final, reduzindo pressão social.
+
+### Bônus por Velocidade
+- **Reforço positivo:** Responder rápido dá +1 casa extra, incentivando agilidade sem punir a lentidão.
+- **Tempo calibrado:** 5s (fácil), 8s (médio), 10s (difícil) — tempos adequados para a faixa etária.
+
+### Relatório Individual
+- **Metacognição:** Ao final, cada jogador vê seu desempenho detalhado, promovendo reflexão sobre aprendizagem.
+- **Foco em progresso pessoal:** O ranking histórico é pessoal (cada jogador tem seu próprio tempo), não comparativo entre crianças.
+
+### Progresso Baseado em Dedicação, não Sorte
+- **Sem aleatoriedade:** Não há dados ou sorte. O progresso depende exclusivamente de responder corretamente às perguntas, reforçando que o aprendizado é o caminho para o sucesso.
+- **Mérito cognitivo:** A criança aprende que o esforço em estudar e responder corretamente tem resultado direto e previsível no jogo.
+
+### Incentivo à Diversidade de Disciplinas
+- **Bônus rotativo:** Cada disciplina tem um período de bônus (+1 casa extra), incentivando os jogadores a explorarem diferentes assuntos em vez de focar apenas em um confortável.
+- **Tanques de disciplina:** O sistema de dificuldade/recompensa por disciplina equilibra o desafio, encorajando experimentação e aprendizado multidisciplinar.
+
 ## 🛠 Tecnologias
 
 - HTML5 + CSS3 + JavaScript puro (vanilla)
