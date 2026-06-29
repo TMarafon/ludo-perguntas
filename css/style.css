@@ -1,0 +1,106 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; user-select: none; }
+body, html { width: 100%; height: 100%; overflow: hidden; background-color: #1a1a2e; }
+#canvas-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+
+/* Telas e Overlays de UI */
+.ui-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; display: flex; justify-content: center; align-items: center; background: rgba(26, 26, 46, 0.9); padding: 20px; }
+.hidden { display: none !important; }
+
+.card { background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; max-width: 600px; text-align: center; color: #333; }
+h1 { color: #4361ee; margin-bottom: 20px; font-size: 2rem; }
+h2 { margin-bottom: 15px; color: #3f37c9; }
+
+/* Configuração de Jogadores */
+.player-row { display: flex; gap: 10px; margin-bottom: 12px; align-items: center; background: #f0f2f5; padding: 10px; border-radius: 10px; }
+input[type="text"] { flex: 1; padding: 10px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; }
+select { padding: 10px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; cursor: pointer; }
+
+.btn { background: #4cc9f0; color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: transform 0.2s, background 0.2s; box-shadow: 0 4px 15px rgba(76,201,240,0.4); margin-top: 15px; }
+.btn:hover { transform: scale(1.05); background: #4361ee; }
+
+/* HUD Superior do Jogo */
+#hud { position: absolute; top: 20px; left: 20px; z-index: 5; background: rgba(255,255,255,0.95); padding: 15px 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); pointer-events: none; border-left: 8px solid #333; }
+#turn-indicator { font-size: 1.4rem; font-weight: bold; margin-bottom: 5px; }
+
+/* Painel Lateral de Disciplinas */
+#discipline-panel { position: absolute; right: 20px; top: 70px; bottom: 20px; width: 280px; z-index: 5; background: rgba(255,255,255,0.95); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); overflow-y: auto; }
+
+/* Botão de Tela Cheia */
+#fullscreen-btn { position: absolute; top: 20px; right: 20px; z-index: 6; background: rgba(255,255,255,0.95); border: none; border-radius: 12px; padding: 10px 14px; font-size: 1.3rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s, background 0.2s; }
+#fullscreen-btn:hover { transform: scale(1.1); background: #fff; }
+.discipline-card { background: #f8f9fa; border: 2px solid #e9ecef; border-radius: 12px; padding: 12px; cursor: pointer; transition: all 0.2s; text-align: left; position: relative; }
+.discipline-card:hover { transform: translateY(-3px); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+.discipline-title { font-weight: bold; font-size: 1.1rem; margin-bottom: 5px; }
+.tank-bar-container { background: #dee2e6; height: 12px; border-radius: 6px; overflow: hidden; position: relative; }
+.tank-bar { height: 100%; width: 100%; transition: width 0.3s, background-color 0.3s; }
+.tank-info { font-size: 0.85rem; display: flex; justify-content: space-between; margin-top: 4px; color: #6c757d; }
+
+/* Modal de Perguntas */
+#question-modal { background: rgba(0,0,0,0.8); }
+.question-card { background: white; padding: 35px; border-radius: 25px; max-width: 650px; width: 100%; text-align: center; }
+#question-text { font-size: 1.4rem; font-weight: bold; margin-bottom: 25px; color: #222; min-height: 60px; display: flex; align-items: center; justify-content: center; }
+.options-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
+.option-btn { background: #f1f3f5; border: 2px solid #e9ecef; padding: 15px; border-radius: 12px; font-size: 1.1rem; font-weight: bold; text-align: left; cursor: pointer; transition: all 0.2s; }
+.option-btn:hover { background: #e7f5ff; border-color: #339af0; transform: translateX(5px); }
+
+/* Contador regressivo do bônus de velocidade */
+.quick-bonus-timer { margin-bottom: 20px; }
+.quick-bonus-timer-label { font-size: 0.85rem; font-weight: bold; color: #ffd166; margin-bottom: 6px; }
+.quick-bonus-timer-label.expired { color: #ef476f; }
+.quick-bonus-timer-bar-bg { background: #e9ecef; height: 14px; border-radius: 7px; overflow: hidden; position: relative; }
+.quick-bonus-timer-bar { height: 100%; width: 100%; transition: width 0.1s linear, background-color 0.2s; border-radius: 7px; }
+.quick-bonus-timer-bar.fast { background: #06d6a0; }
+.quick-bonus-timer-bar.medium { background: #ffd166; }
+.quick-bonus-timer-bar.slow { background: #ef476f; }
+.quick-bonus-timer-bar.expired { background: #adb5bd; width: 0% !important; }
+
+/* Ranking de Final de Jogo */
+.ranking-item { display: flex; justify-content: space-between; padding: 10px 20px; background: #f8f9fa; margin-bottom: 8px; border-radius: 10px; font-weight: bold; font-size: 1.1rem; }
+
+/* Ranking Histórico */
+.history-ranking-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #f8f9fa; margin-bottom: 10px; border-radius: 12px; cursor: pointer; transition: transform 0.2s, background 0.2s; border-left: 6px solid #7209b7; }
+.history-ranking-item:hover { transform: translateX(5px); background: #f3e8ff; }
+.history-ranking-info { text-align: left; flex: 1; }
+.history-ranking-title { font-weight: bold; font-size: 1rem; color: #333; margin-bottom: 4px; }
+.history-ranking-meta { font-size: 0.85rem; color: #666; }
+.history-ranking-stats { text-align: right; }
+.history-ranking-stat { font-size: 0.9rem; font-weight: bold; color: #333; }
+.history-ranking-empty { text-align: center; color: #666; padding: 30px; font-size: 1.1rem; }
+.history-ranking-badge { display: inline-block; background: #7209b7; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-left: 6px; }
+
+/* Relatório de desempenho no final do jogo */
+.report-container { max-height: 60vh; overflow-y: auto; text-align: left; margin-bottom: 20px; padding-right: 10px; }
+.report-player { background: #f8f9fa; border-radius: 15px; padding: 18px; margin-bottom: 15px; border-left: 6px solid #333; }
+.report-player h3 { margin-bottom: 12px; color: #333; font-size: 1.2rem; }
+.report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.report-stat { background: white; padding: 10px; border-radius: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.report-stat-value { font-size: 1.4rem; font-weight: bold; color: #4361ee; }
+.report-stat-label { font-size: 0.8rem; color: #666; margin-top: 2px; }
+.report-section { margin-top: 10px; }
+.report-section-title { font-weight: bold; font-size: 0.95rem; color: #555; margin-bottom: 6px; }
+.report-bar { display: flex; height: 18px; border-radius: 9px; overflow: hidden; margin-bottom: 8px; }
+.report-bar-correct { background: #06d6a0; }
+.report-bar-wrong { background: #ef476f; }
+.report-discipline { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; margin-bottom: 5px; padding: 4px 8px; background: white; border-radius: 6px; }
+.report-question-list { max-height: 150px; overflow-y: auto; background: white; border-radius: 10px; padding: 10px; }
+.report-question { font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid #eee; }
+.report-question:last-child { border-bottom: none; }
+.report-question-correct { color: #06d6a0; font-weight: bold; }
+.report-question-wrong { color: #ef476f; font-weight: bold; }
+.report-toggle { background: #e7f5ff; color: #339af0; border: none; padding: 6px 12px; border-radius: 15px; cursor: pointer; font-size: 0.85rem; margin-top: 8px; }
+.report-toggle:hover { background: #d0ebff; }
+
+/* Modal de Carta Surpresa */
+.surprise-card { background: linear-gradient(135deg, #7209b7, #560bad); padding: 35px; border-radius: 25px; max-width: 500px; width: 100%; text-align: center; color: white; box-shadow: 0 10px 40px rgba(114,9,183,0.5); }
+.surprise-card h1 { color: #ffd166; margin-bottom: 15px; font-size: 2.2rem; }
+.surprise-card p { font-size: 1.2rem; margin-bottom: 20px; }
+.surprise-icon { font-size: 4rem; margin-bottom: 10px; animation: bounce 0.6s ease infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+.surprise-btn { background: #ffd166; color: #7209b7; border: none; padding: 12px 30px; border-radius: 25px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: transform 0.2s; margin-top: 10px; }
+.surprise-btn:hover { transform: scale(1.05); }
+
+/* Listas de seleção (adversário / disciplina) */
+.select-list { display: flex; flex-direction: column; gap: 10px; margin: 15px 0; }
+.select-item { background: #f0f2f5; border: 3px solid transparent; border-radius: 12px; padding: 14px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
+.select-item:hover { border-color: #7209b7; transform: translateX(5px); background: #f3e8ff; }
+.select-color-dot { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; }
